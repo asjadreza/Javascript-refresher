@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Events</title>
+  </head>
+  <style>
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .button-group .btn {
+      cursor: pointer;
+    }
+  </style>
+  <body style="background-color: #414141; color: aliceblue">
+    <h1>Events in JS</h1>
+
+    <div>
+      <ul class="button-group" id="btn-group">
+        <!-- <button class="btn" id="btn1">Button One</button>
+      <button class="btn" id="btn2">Button Two</button>
+      <button class="btn" id="btn3">Button Three</button>
+      <button class="btn" id="btn4">Button Four</button>
+      <button class="btn" id="btn5">Button Five</button> -->
+        <li class="btn" id="btn1">list1</li>
+        <li class="btn" id="btn2">list2</li>
+        <li class="btn" id="btn3">list3</li>
+        <li class="btn" id="btn4">list4</li>
+        <li class="btn" id="btn5">list5</li>
+      </ul>
+    </div>
+
+    <div style="margin-left: 2rem; margin-top: 2rem">
+      <a style="color: aliceblue" href="https://www.google.com" id="google"
+        >Google</a
+      >
+    </div>
+
+    <div>
+      <p>Press any key or click the mouse to get the event type.</p>
+      <p id="log"></p>
+    </div>
+  </body>
+  <script>
+    // approach-1 to add event using id, it may give problem on scale up
+    // document.getElementById('btn1').onclick = function() {
+    //     alert("button one clicked")
+    // }
+
+    // attachEvent
+    // on- jQuery
+
+    // approach-2 using event listener
+    // document.getElementById('btn1').addEventListener('click', function(e) {
+    //     alert("button one clicked again")
+    //     console.log(e)
+
+    // }, false) // this false is default , either we can mention it or not , it will work as a false this is bubbling use case
+
+    // event propagation
+    // event bubbling --> false-->default
+    // event capturing --> true
+
+    // capturing mode
+    // document.getElementById('btn-group').addEventListener('click', function(e){
+    //     console.log('clicked insde the ul')
+    //     e.stopPropagation()  // ab ye niche ke code mei nhi jaayega
+    // }, true) // true --> capturing
+
+    // document.getElementById('btn4').addEventListener('click', function(){
+    //     console.log('Button four clicked')
+
+    // }, true)
+
+    // prevent default
+    // document.getElementById('google').addEventListener('click', function(e){
+    //     console.log("google clicked")
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    // }, false)
+
+    // question - jitne bi lis hain uspe click krne wo remove hona chahiye
+
+    document.querySelector("#btn-group").addEventListener(
+      "click",
+      function (e) {
+        console.log(e.target.parentNode);
+        if (e.target.tagName === "LI") {
+          e.target.remove();
+        }
+      },
+      false
+    );
+
+    // important about events (to be studied!!!)
+    // type, timestamps, defaultPrevented(to stop the default behaviour of any event), target,
+    // toElement, srcElement, currentTarget
+    // clientX, clientY, screenX, screenY, width, height
+    // altkey, ctrlkey, shifkey, keycode
+    function getEventType(event) {
+      const log = document.getElementById("log");
+      log.innerText = `${event.type}\n${log.innerText}`;
+    }
+
+    // Keyboard events
+    document.addEventListener("keydown", getEventType); // first
+    document.addEventListener("keypress", getEventType); // second
+    document.addEventListener("keyup", getEventType); // third
+
+    // Mouse events
+    document.addEventListener("mousedown", getEventType); // first
+    document.addEventListener("mouseup", getEventType); // second
+    document.addEventListener("click", getEventType); // third
+  </script>
+</html>
