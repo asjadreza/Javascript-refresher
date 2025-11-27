@@ -428,9 +428,27 @@ function count_occurrences(arr) {
 }
 
 const occur_arr = ["a", "b", "b", "a", "a", "c"]
-console.log(count_occurrences(occur_arr));
+// console.log(count_occurrences(occur_arr));
 
 
+// Roatate Array 
+// Question: Given an array and a number k, rotate the array to the right by k steps.
+// 💡 What does rotation mean?
+// Rotate right by 1 step: last element becomes first
+// [1, 2, 3, 4, 5] = [5, 1, 2, 3, 4]
+
+// Solution using brute force 
+function rotateBruteForce(arr, k) {
+    for(let i = 0; i < k; i++) {
+        const last = arr.pop(); // remove the last element
+        arr.unshift(last) // insert it at the front
+    }
+
+    return arr
+}
+
+const my_arr1 = [1, 2, 3, 4, 5]
+console.log(rotateBruteForce(my_arr1, 2))
 
 
 
