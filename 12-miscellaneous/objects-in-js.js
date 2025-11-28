@@ -83,6 +83,85 @@ const {name, age} = user;  // object destucturing
 
 // 📌 Convert Object → Array
 const obj = { a: 1, b: 2 };
-console.log(Object.keys(obj))
-console.log(Object.values(obj))
-console.log(Object.entries(obj))
+// console.log(Object.keys(obj))
+// console.log(Object.values(obj))
+// console.log(Object.entries(obj))
+
+
+// what is shallow copy?
+
+// A shallow copy creates a new object, but copies only the top-level properties.
+// If the original object contains nested objects/arrays, the references to nested values are copied, not the actual values.
+// So changes made to nested objects will affect both copies.
+
+// Example: 
+const original = {
+    name: "Asjad",
+    skills: ["Javascript", "React"]
+}
+
+// shallow copy using spread operator
+const copy = {...original};
+
+// console.log("Original", original)
+// console.log("Copy", copy)
+
+
+// modify nested array 
+copy.skills.push("Node.js")
+
+// console.log(original.skills) // [ 'Javascript', 'React', 'Node.js' ]
+// console.log(copy.skills) // [ 'Javascript', 'React', 'Node.js' ]
+
+// Why did both change?
+
+// Because skills array reference was copied, not the actual array.
+
+
+// What is a Deep Copy?
+
+// A deep copy creates a completely independent clone of the object,
+// including all nested objects or arrays.
+
+// So modifying nested properties does NOT affect the original.
+
+
+// Example: Deep Copy
+const original1 = {
+    name: "Asjad",
+    skills: ["JavaScript", "React"]
+}
+
+// Deep Copy using JSON Method
+const deepCopy = JSON.parse(JSON.stringify(original1));
+
+deepCopy.skills.push("Node.js")
+
+console.log(original1.skills) // ["JavaScript", "React"]
+console.log("deep copy", deepCopy.skills) // ["JavaScript", "React", "Node.js"]
+
+// Methods to Create Deep Copy
+// const deep1 = JSON.parse(JSON.stringify(obj));
+// const deep2 = structuredClone(obj); // modern & recommended
+
+
+
+// merging two objects 
+const a = {
+    name: "Asjad",
+    degree: "Btech"
+}
+
+const b = {
+    city: "Delhi",
+    hasOwnHouse: false
+}
+
+const c = {...a, ...b}
+console.log(c)
+
+// convert array object into a single object 
+const arr = [["a", 1], ["b", 2]] // array object
+
+const obj1 = Object.fromEntries(arr)
+console.log(obj1)
