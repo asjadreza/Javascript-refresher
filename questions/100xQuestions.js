@@ -448,7 +448,7 @@ function rotateBruteForce(arr, k) {
 }
 
 const my_arr1 = [1, 2, 3, 4, 5]
-console.log(rotateBruteForce(my_arr1, 2))
+// console.log(rotateBruteForce(my_arr1, 2))
 
 
 
