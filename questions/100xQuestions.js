@@ -451,7 +451,45 @@ const my_arr1 = [1, 2, 3, 4, 5]
 // console.log(rotateBruteForce(my_arr1, 2))
 
 
+// Question 17: Word pattern: leetcode
 
+function word_pattern(pattern, s) {
+    const words = s.split(" ")
+
+    if(words.length !== pattern.length) return false
+
+    const char_to_word = new Map()
+    const word_to_char = new Map()
+
+    
+
+    for(let i = 0; i < pattern.length; i++) {
+        const char = pattern[i]
+        const word = words[i]
+
+        // console.log(char_to_word.get(char))
+        if(char_to_word.has(char) && char_to_word.get(char) !== word) {
+            return false
+        }
+
+        if(word_to_char.has(word) && word_to_char.get(word) !== char) {
+            return false
+        }
+
+        char_to_word.set(char, word)
+        word_to_char.set(word, char)
+
+        // console.log(char)
+    }
+    console.log(char_to_word)
+    console.log(word_to_char)
+    return true
+}
+
+pattern = "abba"
+s = "dog cat cat dog"
+
+console.log(word_pattern(pattern, s))
 
 
 
