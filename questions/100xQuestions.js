@@ -489,7 +489,48 @@ function word_pattern(pattern, s) {
 pattern = "abba"
 s = "dog cat cat dog"
 
-console.log(word_pattern(pattern, s))
+// console.log(word_pattern(pattern, s))
+
+// Question-18: Add two string (numbered string)
+
+// let num1 = "233"
+// let num2 = "57"
+// result = "290"
+
+function addStr(num1, num2) {
+    let i = num1.length - 1;
+    let j = num2.length - 1;
+    
+    let carry = 0
+    let result = ""
+
+    while(i >= 0 || j >= 0 || carry > 0) {
+        const digit1 = i >= 0 ? num1.charCodeAt(i) - 48 : 0
+        const digit2 = j >= 0 ? num2.charCodeAt(j) - 48 : 0
+        // console.log(digit2)
+
+        const sum = digit1 + digit2 + carry;
+
+        console.log("sum", sum)
+
+        result = (sum % 10 ) + result; // remainder becomes new digit
+        console.log("res", result)
+        carry = Math.floor(sum / 10)
+        console.log("carr", carry)
+
+        i--;
+        j--
+    }
+    return result
+}
+
+const num1 = "233"
+const num2 = "57"
+
+// console.log(addStr(num1, num2))
+
+// console.log(9%10)
+
 
 
 
